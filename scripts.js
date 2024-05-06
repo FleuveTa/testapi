@@ -3,13 +3,12 @@ var baseUrl = "https://api.extract.pics/v0"
 var desUrl = "https://www.google.com"
 
 var input = document.getElementById("input");
-input.addEventListener("onchange", function (value) {
-    desUrl = value;
+input.addEventListener("change", function (event) {
+    desUrl = event.target.value;
     console.log(desUrl)
 })
 
 var callApi = async function () {
-    var desUrl = document.getElementById("input").value;
     console.log("Call API")
     const res = await fetch('https://api.extract.pics/v0/extractions/', {
     method: 'POST',
@@ -24,23 +23,21 @@ var callApi = async function () {
 
     const id = json.data.id;
 
-    let status = 'pending';
+    // let status = 'pending';
 
-    while (status !== 'done' && status !== 'error') {
+    // while (status !== 'done' && status !== 'error') {
 
-    const res = await fetch(`https://api.extract.pics/v0/extractions/${id}`, {
-        method: 'GET',
-        headers: {
-        Authorization: `Bearer ${apiKey}`,
-        },
-    })
+    // const res = await fetch(`https://api.extract.pics/v0/extractions/${id}`, {
+    //     method: 'GET',
+    //     headers: {
+    //     Authorization: `Bearer ${apiKey}`,
+    //     },
+    // })
 
-    status = (await res.json()).data.status;
-    const json = await res.json()
-    console.log(json)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    }   
-
+    // status = (await res.json()).data.status;
+    // const json = await res.json()
+    // console.log(json)
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+    // }   
 }
 
